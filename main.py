@@ -6,22 +6,24 @@ from datetime import datetime
 import requests
 import pytz
 
+
 def get_weather():
     pass
 
 # Basic window
 
+
 root = tk.Tk()
 root.title("Weather App")
-root.geometry("800x400+300+200")
+root.geometry("900x490+300+200")
 root.resizable(False, False)
 
 # Search line
-search_line = tk.PhotoImage(file = "search.png")
+search_line = tk.PhotoImage(file="search.png")
 search_line_lable = tk.Label(root, image=search_line)
-search_line_lable.pack(pady=20,side=tk.TOP)
+search_line_lable.pack(pady=20, side=tk.TOP)
 
-text_fild = tk.Entry(root, justify="center",width=17, 
+text_fild = tk.Entry(root, justify="center", width=17,
                      font=("poppins", 25, "bold"),
                      bg="#404040", fg="white", border=0)
 
@@ -33,4 +35,15 @@ search_icon_button = tk.Button(root, image=search_icon, border=0,
 
 search_icon_button.place(x=540, y=34)
 
-root.mainloop() 
+# logo:
+logo_image = tk.PhotoImage(file="logo.png")
+logo_label = tk.Label(root, image=logo_image)
+logo_label.pack(side=tk.TOP)
+
+# Botton box:
+frame_image = tk.PhotoImage(file="box.png")
+frame_label = tk.Label(root, image=frame_image)
+frame_label.pack(pady=6, side=tk.BOTTOM)
+
+
+root.mainloop()
