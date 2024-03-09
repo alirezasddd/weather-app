@@ -8,10 +8,23 @@ import pytz
 
 
 def get_weather():
-    pass
+    # Location
+    try:
+        city = text_fild.get()
+        geolocator = Nominatim(user_agent="geopiExercises")
+        location = geolocator.geocode(city)
+        lat = location.latitude
+        lng = location.longitude
+        obj = TimezoneFinder()
+        result = obj.timezone_at(lng=lng, lat=lat)
+        city_label.config(text=result.split("/")[1])
+        print(result)
+    except Exception as error:
+        print(error)
+        messagebox.showerror("Weather App", "Invalid Entry!")
+
 
 # Basic window
-
 
 root = tk.Tk()
 root.title("Weather App")
@@ -104,8 +117,9 @@ description_label = tk.Label(root, text="...", font=("arial", 20, "bold"),
 description_label.place(x=450, y=430)
 
 pressure_label = tk.Label(root, text="...", font=("arial", 20, "bold"),
-                             bg="#1ab5ef", fg="#404040")
+                          bg="#1ab5ef", fg="#404040")
 
 pressure_label.place(x=650, y=430)
 
 root.mainloop()
+# 17:29
