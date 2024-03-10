@@ -19,6 +19,27 @@ def get_weather():
         result = obj.timezone_at(lng=lng, lat=lat)
         city_label.config(text=result.split("/")[1])
         print(result)
+
+        #Time:
+        home = pytz.timezone(result)
+        local_time = datetime.now(home)
+        current_time = local_time.strftime("%I:%M %p")
+        clock_label.config(text=current_time)
+        time_label.config(text="lacal Time")
+
+        # Weather:
+        api_key = "522e1a2879430c1e407135b8f71b39be"
+        api = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lng}&appid = {api_key}"
+
+        json_data = requests.get(api).json()
+        condition = json_data["weather"][0]["main"]
+        description = json_data["weather"][0]["description"]
+        temp = int(json_data["main"]["temp"]-273.15)
+        pressure = json_data["main"]["pressure"]
+        humidity = json_data["main"]["humidity"]
+        wind = json_data["main"]["wind"]
+        
+
     except Exception as error:
         print(error)
         messagebox.showerror("Weather App", "Invalid Entry!")
